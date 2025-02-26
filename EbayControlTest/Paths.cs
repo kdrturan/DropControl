@@ -8,10 +8,11 @@ namespace EbayControlTest
 {
     public class Paths
     {
-        public static string amazonUrl = "https://www.amazon.com";
+        public static string amazonUrl = "https://www.amazon.com/ref=nav_bb_logo";
         public static string dsUrl = "https://platform.autods.com/login";
         public static string dsProductUrl = "https://platform.autods.com/products";
         public static string ebayPricePath = "td[10]/div[2]";
+        public static string ebayAmazonPricePath = "td[10]/div[1]";
         public static string amazonLinkPath = "td[12]/div[1]/a";
         public static string asinCodePath = "td[12]/div[1]/a/div";
         public static string wholePriceCss = "span.a-price-whole";

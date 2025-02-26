@@ -21,6 +21,17 @@ namespace EbayControlTest
         }
 
 
+        public static void DeleteAll()
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+                var rows = context.Amazon_Ebay.ToList();
+                context.Amazon_Ebay.RemoveRange(rows);
+                context.SaveChanges();
+            }
+        }
+
+
         public static List<Ebay_Control> GetList()
         {
             using (AppDbContext context = new AppDbContext())

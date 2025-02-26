@@ -28,7 +28,6 @@ namespace EbayControlTest
             ChromeDriver driver = new ChromeDriver(options);
             driver.Navigate().GoToUrl(url);
             driver.Manage().Window.Maximize();
-            Thread.Sleep(4000);
             AmazonMiami(driver);
             return (driver);
         }
@@ -47,13 +46,26 @@ namespace EbayControlTest
 
         public static void AmazonMiami(ChromeDriver driver)
         {
-            driver.FindElement(By.XPath("//*[@id=\"nav-global-location-popover-link\"]")).Click();
-            Thread.Sleep(1000);
-            driver.FindElement(By.XPath("//*[@id=\"GLUXZipUpdateInput\"]")).SendKeys("33133");
-            driver.FindElement(By.XPath("//*[@id=\"GLUXZipUpdate\"]/span/input")).Click();
-            Thread.Sleep(1000);
-            driver.FindElement(By.XPath("//*[@id=\"a-popover-1\"]/div/div[2]/span/span")).Click();
-            Thread.Sleep(4000);
+
+
+            try
+            {
+                driver.FindElement(By.XPath("//*[@id=\"nav-global-location-popover-link\"]")).Click();
+                Thread.Sleep(1000);
+                driver.FindElement(By.XPath("//*[@id=\"GLUXZipUpdateInput\"]")).SendKeys("33133");
+                driver.FindElement(By.XPath("//*[@id=\"GLUXZipUpdate\"]/span/input")).Click();
+                Thread.Sleep(1000);
+                driver.FindElement(By.XPath("//*[@id=\"a-popover-1\"]/div/div[2]/span/span")).Click();
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Problem setting Miami: ");
+                Console.WriteLine(ex.Message);
+                Console.ReadLine();
+                Console.ResetColor();
+            }
+
         }
 
         public static void LoginAutods(ChromeDriver driver,string mail,string password)

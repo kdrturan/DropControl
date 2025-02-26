@@ -13,16 +13,16 @@ class Program
     static async Task Main(string[] args)  // 'Main' metodunu asenkron yapıyoruz
     {
 
-        //ChromeDriver dsDriver = DriverControl.CreateAutoDsDriver(Paths.dsUrl);
+        OperationDb.DeleteAll();
+        ChromeDriver dsDriver = DriverControl.CreateAutoDsDriver(Paths.dsUrl);
+        DriverControl.LoginAutods(dsDriver, LoginData.Mail, LoginData.password);
         ChromeDriver amazonDriver = DriverControl.CreateAmazonDriver(Paths.amazonUrl);
-
-        //DriverControl.LoginAutods(dsDriver, LoginData.Mail, LoginData.password);
-        Thread.Sleep(5000);
-        //dsDriver.Navigate().GoToUrl(Paths.dsProductUrl);
-        //PriceScraper.SetShowProduct(dsDriver);
-        //Operations.GetProducts(dsDriver,amazonDriver);
+        dsDriver.Navigate().GoToUrl(Paths.dsProductUrl);
+        PriceScraper.SetShowProduct(dsDriver);
+        Operations.GetProducts(dsDriver);
         Operations.CheckDbProducts(amazonDriver);
-        //dsDriver.Quit();
+        dsDriver.Quit();
+        amazonDriver.Quit();
         Console.WriteLine("Veritabanı hazır!");
     }
 }
